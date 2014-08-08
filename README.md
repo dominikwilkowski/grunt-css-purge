@@ -2,6 +2,8 @@
 
 > Grunt plugin to run [CSS-Purge](https://github.com/rbtech/css-purge)
 
+[![NPM](https://nodei.co/npm/grunt-css-purge.png)](https://nodei.co/npm/grunt-css-purge/)
+
 ## Getting Started
 This plugin requires Grunt.
 
