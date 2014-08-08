@@ -1,0 +1,10 @@
+node_modules
+npm-debug.log
+tmp
+.tmp
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+.idea
+dist
+distall

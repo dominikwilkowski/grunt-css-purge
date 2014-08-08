@@ -1,0 +1,53 @@
+{
+  "name": "grunt-css-purge",
+  "version": "0.0.1",
+  "description": "Grunt plugin to run CSS-Purge",
+  "homepage": "https://github.com/dominikwilkowski/grunt-css-purge",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dominikwilkowski/grunt-css-purge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dominikwilkowski/grunt-css-purge/issues"
+  },
+  "author": {
+    "name": "Dominik Wilkowski",
+    "email": "hi@dominik-wilkowski.com",
+    "url": "http://dominik-wilkowski.com/"
+  },
+  "keywords": [
+    "gruntplugin",
+    "css-purge",
+    "css"
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/dominikwilkowski/grunt-css-purge/blob/master/LICENSE"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "dependencies": {
+    "chalk": "~0.5.1",
+    "css-purge": "^1.1.1",
+    "cli-color": "0.2.2",
+    "commander": "1.1.1",
+    "css-parse": "1.1.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-nodeunit": "~0.3.0",
+    "grunt": "~0.4.0",
+    "jshint-stylish": "~0.1.5",
+    "load-grunt-tasks": "~0.3.0",
+    "css-purge": "^1.1.1"
+  },
+  "scripts": {
+    "test": "grunt test"
+  }
+}
