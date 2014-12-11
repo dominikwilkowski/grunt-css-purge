@@ -1,4 +1,5 @@
-# grunt-css-purge
+grunt-css-purge
+===============
 
 > Grunt plugin to run [CSS-Purge](https://github.com/rbtech/css-purge)
 
@@ -85,6 +86,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 Add unit tests for any new or changed functionality. Lint and test your code using the [Grunt](http://gruntjs.com/) task already set up.
 
 ## Release History
+0.0.2 - refinements
 0.0.1 - alpha test
 
 ## License
