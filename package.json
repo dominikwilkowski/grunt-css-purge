@@ -25,7 +25,7 @@
 		"node": ">=0.10.0"
 	},
 	"license": {
-		"type": "MIT",
+		"type": "GNU-GPL",
 		"url": "https://github.com/dominikwilkowski/grunt-css-purge/blob/master/LICENSE"
 	},
 	"peerDependencies": {
