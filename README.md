@@ -1,6 +1,7 @@
 grunt-css-purge
 ===============
-
+[![Dependency Status](https://david-dm.org/dominikwilkowski/grunt-css-purge.svg)](https://david-dm.org/dominikwilkowski/grunt-css-purge)
+[![devDependency Status](https://david-dm.org/dominikwilkowski/grunt-css-purge/dev-status.svg)](https://david-dm.org/dominikwilkowski/grunt-css-purge#info=devDependencies)
 > Grunt plugin to run [CSS-Purge](https://github.com/rbtech/css-purge)
 
 [![NPM](https://nodei.co/npm/grunt-css-purge.png)](https://nodei.co/npm/grunt-css-purge/)
