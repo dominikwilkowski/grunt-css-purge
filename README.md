@@ -39,9 +39,9 @@ grunt.initConfig({
 		       	files: {
 				'purged.css': 'bigFile.css'
 			}
-		},
-	},
-})
+		}
+	}
+});
 ```
 
 ### Options
