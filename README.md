@@ -69,7 +69,7 @@ css_purge: {
 			'purged.css': 'bigFile.css'
 		}
 	}
-},
+}
 ```
 
 #### Custom Options
@@ -80,10 +80,12 @@ css_purge: {
 		"verbose": false,
 		"no_duplicate_property": true
 	},
-	files: {
-		'purged.css': 'bigFile.css'
+	target {
+	       	files: {
+			'purged.css': 'bigFile.css'
+		}
 	}
-},
+}
 ```
 
 ## Contributing
