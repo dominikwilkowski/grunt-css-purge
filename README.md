@@ -64,9 +64,11 @@ Allow duplicate properties on a selector
 
 ```js
 css_purge: {
-	files: {
-		'purged.css': 'bigFile.css',
-	},
+	target {
+	       	files: {
+			'purged.css': 'bigFile.css'
+		}
+	}
 },
 ```
 
@@ -76,11 +78,11 @@ css_purge: {
 css_purge: {
 	options: {
 		"verbose": false,
-		"no_duplicate_property": true,
+		"no_duplicate_property": true
 	},
 	files: {
-		'purged.css': 'bigFile.css',
-	},
+		'purged.css': 'bigFile.css'
+	}
 },
 ```
 
