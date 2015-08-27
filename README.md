@@ -35,7 +35,7 @@ grunt.initConfig({
 			"verbose": false,
 			"no_duplicate_property": true
 		},
-		target {
+		target: {
 		       	files: {
 				'purged.css': 'bigFile.css'
 			}
