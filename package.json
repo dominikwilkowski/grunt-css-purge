@@ -1,6 +1,6 @@
 {
 	"name": "grunt-css-purge",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Grunt plugin to run CSS-Purge",
 	"homepage": "https://github.com/dominikwilkowski/grunt-css-purge",
 	"repository": {
@@ -29,7 +29,7 @@
 		"url": "https://github.com/dominikwilkowski/grunt-css-purge/blob/master/LICENSE"
 	},
 	"peerDependencies": {
-		"grunt": "~0.4.1"
+		"grunt": ">=0.4.0"
 	},
 	"dependencies": {
 		"chalk": "~0.5.1",
