@@ -1,6 +1,7 @@
 grunt-css-purge
 ===============
-
+[![Dependency Status](https://david-dm.org/dominikwilkowski/grunt-css-purge.svg)](https://david-dm.org/dominikwilkowski/grunt-css-purge)
+[![devDependency Status](https://david-dm.org/dominikwilkowski/grunt-css-purge/dev-status.svg)](https://david-dm.org/dominikwilkowski/grunt-css-purge#info=devDependencies)
 > Grunt plugin to run [CSS-Purge](https://github.com/rbtech/css-purge)
 
 [![NPM](https://nodei.co/npm/grunt-css-purge.png)](https://nodei.co/npm/grunt-css-purge/)
@@ -32,13 +33,15 @@ grunt.initConfig({
 	css_purge: {
 		options: {
 			"verbose": false,
-			"no_duplicate_property": true,
+			"no_duplicate_property": true
 		},
-		files: {
-			'purged.css': 'bigFile.css',
-		},
-	},
-})
+		target: {
+		       	files: {
+				'purged.css': 'bigFile.css'
+			}
+		}
+	}
+});
 ```
 
 ### Options
@@ -61,10 +64,12 @@ Allow duplicate properties on a selector
 
 ```js
 css_purge: {
-	files: {
-		'purged.css': 'bigFile.css',
-	},
-},
+	target {
+	       	files: {
+			'purged.css': 'bigFile.css'
+		}
+	}
+}
 ```
 
 #### Custom Options
@@ -73,12 +78,14 @@ css_purge: {
 css_purge: {
 	options: {
 		"verbose": false,
-		"no_duplicate_property": true,
+		"no_duplicate_property": true
 	},
-	files: {
-		'purged.css': 'bigFile.css',
-	},
-},
+	target {
+	       	files: {
+			'purged.css': 'bigFile.css'
+		}
+	}
+}
 ```
 
 ## Contributing
