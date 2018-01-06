@@ -1,6 +1,6 @@
 {
 	"name": "grunt-css-purge",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Grunt plugin to run CSS-Purge",
 	"homepage": "https://github.com/dominikwilkowski/grunt-css-purge",
 	"repository": {
@@ -32,15 +32,11 @@
 	},
 	"dependencies": {
 		"chalk": "~2.3.0",
-		"css-purge": "^3.0.3",
-		"cli-color": "1.2.0",
-		"commander": "2.12.2",
-		"css-parse": "2.0.0"
+		"css-purge": "^3.0.3"
 	},
 	"devDependencies": {
 		"grunt-contrib-clean": "~1.1.0",
 		"grunt": "~1.0.1",
-		"jshint-stylish": "~2.2.1",
 		"load-grunt-tasks": "~3.5.2"
 	},
 	"scripts": {

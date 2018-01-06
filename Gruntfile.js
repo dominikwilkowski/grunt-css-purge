@@ -56,7 +56,7 @@ module.exports = function( grunt ) {
 			custom_options: {
 				options: {
 					trim_comments: false,
-					generate_report: true,
+					shorten: false,
 				},
 				src: 'test/css/test.css',
 				dest: 'test/temp/default_options.css',
