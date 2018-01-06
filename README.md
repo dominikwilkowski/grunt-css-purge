@@ -1,95 +1,146 @@
-grunt-css-purge
+<img alt="Grunt CSS Purge" src="https://raw.githubusercontent.com/rbtech/css-purge/master/assets/images/grunt-css-purge.png" width="133px">
+
+
+Grunt CSS-PURGE
 ===============
 
-> Grunt plugin to run [CSS-Purge](https://github.com/rbtech/css-purge)
+Purges duplicate CSS rules and more. Based on [css-purge](https://www.npmjs.org/package/css-purge).
 
-[![NPM](https://nodei.co/npm/grunt-css-purge.png)](https://nodei.co/npm/grunt-css-purge/)
 
-## Getting Started
-This plugin requires Grunt.
+## You have an issue?
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide,
-as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar
-with that process, you may install this plugin with this command:
+This is a simple [grunt](http://gruntjs.com/) plugin, which means it’s a thin wrapper around `css-purge`. If you are having CSS issues, please
+contact [css-purge](https://github.com/rbtech/css-purge/issues). Please only create a new issue if it looks like you’re having a problem with the grunt plugin.
 
-```shell
+
+## Install
+
+```
 npm install grunt-css-purge --save-dev
 ```
 
+
+## Options
+
+Visit the [CSS-PURGE website](http://rbtech.github.io/css-purge)
+
+
+## Getting Started
+
+This plugin requires Grunt.
+
+If you haven’t used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide,
+as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you’re familiar
+with that process, you may install this plugin.
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
 grunt.loadNpmTasks('grunt-css-purge');
 ```
 
-## The "css_purge" task
 
-### Overview
-In your project's Gruntfile, add a section named `css_purge` to the data object passed into `grunt.initConfig()`.
+## Example use cases
+
+The most basic `Gruntfile.js` setup:
 
 ```js
-grunt.initConfig({
-	css_purge: {
-		options: {
-			"verbose": false,
-			"no_duplicate_property": true,
+'use strict';
+
+module.exports = function( grunt ) {
+	grunt.loadNpmTasks('grunt-css-purge');
+
+	grunt.initConfig({
+		css_purge: {
+			site: {
+				options: {},
+				src: 'site.css',
+				dest: 'site.min.css',
+			},
 		},
-		files: {
-			'purged.css': 'bigFile.css',
-		},
-	},
-})
+	});
+
+	grunt.registerTask('default', ['css_purge']);
+};
 ```
 
-### Options
+For more infos about the options please look at the [CSS-Purge website](http://rbtech.github.io/css-purge/).
 
-#### options.verbose
-Type: `Boolen`
-Default value: `false`
+See below a couple different ways you can use the grunt task with various different files.
 
-Show trace of optimization
-
-#### options.no_duplicate_property
-Type: `Boolen`
-Default value: `true`
-
-Allow duplicate properties on a selector
-
-### Usage Examples
-
-#### Default Options
+A single file:
 
 ```js
-css_purge: {
+default_options: {
+	options: {},
+	src: 'site.css',
+	dest: 'site.min.css',
+},
+```
+
+Multiple files:
+
+```js
+multiple_files: {
+	options: {},
+	src: [
+		'site1.css',
+		'site2.css',
+	],
+	dest: 'site.min.css',
+},
+```
+
+Multiple files:
+
+```js
+multiple_files2: {
+	options: {},
 	files: {
-		'purged.css': 'bigFile.css',
+		'site.min.css': ['site1.css', 'site2.css'],
 	},
 },
 ```
 
-#### Custom Options
+Multiple files with a wildcard:
 
 ```js
-css_purge: {
+multiple_files3: {
+	options: {},
+	files: [{
+		src: ['css/**/*.css'],
+		dest: 'site.min.css',
+	}],
+},
+```
+
+Custom options:
+
+```js
+custom_options: {
 	options: {
-		"verbose": false,
-		"no_duplicate_property": true,
+		trim_comments: false,
+		generate_report: true,
 	},
-	files: {
-		'purged.css': 'bigFile.css',
-	},
+	src: 'site.css',
+	dest: 'site.min.css',
 },
 ```
+
 
 ## Contributing
+
 In lieu of a formal styleguide, take care to maintain the existing coding style.
-Add unit tests for any new or changed functionality. Lint and test your code using the [Grunt](http://gruntjs.com/) task already set up.
+
 
 ## Release History
+
+* 1.0.0 - Updated to CSS-Purge 3.0.0
 * 0.0.4 - Updated peerDependencies for grunt 1.0
 * 0.0.3 - updated license
 * 0.0.2 - refinements
 * 0.0.1 - alpha test
 
+
 ## License
-Copyright (c) 2014 Dominik Wilkowski. Licensed under the GPLv2 license.
+
+Copyright (c) 2018 Dominik Wilkowski. Licensed under the GPLv2 license.

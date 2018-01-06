@@ -1,84 +1,104 @@
-/*
- * grunt-css-purge
- * https://github.com/dominikwilkowski/grunt-css-purge
+/***************************************************************************************************************************************************************
  *
- * Copyright (c) 2014 Dominik Wilkowski
- * Licensed under the MIT license.
- */
+ * css purge
+ *
+ * A CSS tool written in Node JS as a command line app or library for the purging, burning, reducing, shortening, compressing, cleaning,
+ * trimming and formatting of duplicate, extra, excess or bloated CSS, phew!
+ *
+ * @license     https://github.com/dominikwilkowski/grunt-css-purge/blob/master/LICENSE
+ * @author      Dominik Wilkowski  hi@dominik-wilkowski.com
+ * @repository  https://github.com/dominikwilkowski/grunt-css-purge
+ *
+ **************************************************************************************************************************************************************/
 
 'use strict';
 
-module.exports = function( grunt ) {
-	// Dependencies
-	var CSSPurge = require( './lib/css-purge.js' ),
-			chalk    = require( 'chalk' ),
-			fs       = require('fs'),
-			path     = require('path');
-
-	grunt.registerMultiTask('css_purge', 'Grunt plugin to run CSS-Purge', function() {
-
-		var options = this.options({
-			'verbose': false,
-			'no_duplicate_property': true
-		});
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Dependencies
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+const CSSPurge = require('css-purge');
+const Chalk = require('chalk');
+const Path = require('path');
+const Fs = require('fs');
 
 
-		this.files.forEach(function( files ) {
-			var src = files.src.filter(function( filepath ) {
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Grunt plugin
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+module.exports = function( Grunt ) {
 
-				// Warn on and remove invalid source files (if nonull was set).
-				if( !grunt.file.exists( filepath ) ) {
-					grunt.log.warn( 'Source file "' + filepath + '" not found.' );
-					return false;
-				}
-				else {
-					return true;
-				}
-			});
+	// Check files existence
+	const GetAvailableFiles = filesArray => (
+		filesArray.filter( filepath => {
+			if( !Grunt.file.exists( filepath ) ) {
+				Grunt.log.warn(`Source file ${ chalk.cyan( filepath ) } not found`);
 
-			if( src.length === 0 ) {
-				grunt.log.warn( 'Destination (' + files.dest + ') not written because src files were empty.' );
+				return false;
+			}
+			else {
+				return true;
+			}
+		})
+	);
+
+	Grunt.registerMultiTask('css_purge', 'Grunt plugin to run CSS-Purge', function() {
+
+		this.files.forEach( ( files ) => {
+			// Get source files and destination location
+			const srcFiles = GetAvailableFiles( files.src );
+			const destFile = files.dest ? files.dest : this.data.dest;
+
+			// Check source files
+			if( srcFiles.length === 0 ) {
+				Grunt.log.warn( `Destination (${ Chalk.cyan( destFile ) }) not written because source files were empty.` );
+
 				return;
 			}
 
+			let CSS = '';
+
 			// Iterate over all files
-			src.forEach(function(sourceFile) {
+			srcFiles.forEach( ( srcFile ) => {
 
-				try {
+				// Create folder if we have to
+				if( !Fs.existsSync( Path.dirname( destFile ) ) ) {
+					const newFolder = Path.dirname( destFile );
 
-					// Create folder if we have to
-					if(!fs.existsSync(files.dest)) {
-						var newFolder = path.dirname(files.dest);
-
-						grunt.file.mkdir(newFolder, null);
-						grunt.log.writeln( chalk.cyan('"' + newFolder + '/" has been created' ) );
-					}
-
-					// Purge that CSS!
-					var csspurge = new CSSPurge(
-						sourceFile,
-						files.dest,
-						{
-							"verbose": options.verbose,
-							"no_duplicate_property": options.no_duplicate_property
-						}
-					);
-
-				}
-				catch( e ) {
-					var err = new Error( 'css-purge failed.' );
-					if( e.msg ) {
-						err.message += ', ' + e.msg + '.';
-					}
-					err.origError = e;
-					grunt.log.warn( 'Purging source "' + sourceFile + '" failed.' );
-					grunt.fail.warn( err );
+					Grunt.file.mkdir( newFolder, null );
+					Grunt.log.writeln( Chalk.cyan('"' + newFolder + '/" has been created' ) );
 				}
 
+				// Get all CSS together
+				CSS += Grunt.file.read( srcFile );
 			});
+
+			// Try Purging
+			try {
+
+				CSSPurge.purgeCSS( CSS, this.options(), ( error, result, thing ) => {
+					if( error ) {
+						Grunt.log.warn( `Purging CSS failed for "${ Chalk.cyan( destFile ) }".` );
+						Grunt.log.warn( error );
+					}
+					else {
+						Grunt.file.write( destFile, result );
+						Grunt.log.ok( `File${ srcFiles.length > 1 ? 's' : '' } successfully purged to "${ Chalk.green( destFile ) }"` );
+					}
+				});
+
+			}
+			catch( error ) {
+				var errorMessage = new Error( 'css-purge failed.' );
+
+				if( error.msg ) {
+					errorMessage.message += ` ${ error.msg }.`;
+				}
+
+				errorMessage.origError = error;
+				Grunt.log.warn( `Purging CSS failed for "${ Chalk.cyan( destFile ) }".` );
+				Grunt.fail.warn( errorMessage );
+			}
 		});
-
-
 	});
 
 };

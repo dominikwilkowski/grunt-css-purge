@@ -1,41 +1,29 @@
-
-
 .something {
-	color: #aaa;
 	color: #ffffff;
 }
 .something-again {
-	color: #aaa;
-	padding: 10px;
 	color: #CCC;
+	padding: 10px;
 	background-color: #FFFFFF;
 }
 .something-more-again {
-	display: block;
-	position: absolute;
-	top: 100px;
-	left: 300px;
-	bottom: 70px;
-	width: 500px;
-	height: 500px;
-	right: 300px;
 	display: table;
 	position: absolute;
+	top: 100px;
 	left: 700px;
-	right: 700px;
+	bottom: 70px;
 	width: 100%;
 	height: 100%;
+	right: 700px;
 	color: #eee;
 	background-color: #333;
 }
 
 .test {
-	color: blue;
-	font-weight: bold;
 	color: purple;
+	font-weight: bold;
 }
 .test2 {
-	color: green;
 	color: green;
 }
 .invalidProperties {
@@ -57,10 +45,6 @@
 		font-style: italic;
 		color: #666;
 		background-color: #ABCDEF;
-		content: " (" attr(data-email) ")";
-		font-size: 11px;
-		font-style: italic;
-		color: #666;
 	}
 }
 
@@ -68,9 +52,6 @@
 @media all and (max-width: 1000px) and (min-width: 700px) {
 
 	#sidebar ul li a:before {
-		content: "Email: ";
-		font-style: italic;
-		color: #666;
 		content: "Email: ";
 		font-style: italic;
 		color: #333;
@@ -81,11 +62,9 @@
 @media all and (max-width: 699px) and (min-width: 520px), (min-width: 1151px) {
 
 	#sidebar ul li a {
-		padding-left: 21px;
-		background: url(../images/email.png) left center no-repeat;
 		padding-left: 10px;
-		padding-right: 30px;
 		background: url(../images/email.png) right center no-repeat;
+		padding-right: 30px;
 	}
 }
 

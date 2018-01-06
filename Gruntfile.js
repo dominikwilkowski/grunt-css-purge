@@ -2,70 +2,73 @@
  * grunt-css-purge
  * https://github.com/dominikwilkowski/grunt-css-purge
  *
- * Copyright (c) 2014 Dominik Wilkowski
- * Licensed under the MIT license.
+ * Copyright (c) 2018 Dominik Wilkowski
+ * Licensed under the GNU GPL2 license.
  */
 
 'use strict';
 
 module.exports = function( grunt ) {
-	// load all npm grunt tasks
 	require( 'load-grunt-tasks' )( grunt );
 
-	// Project configuration.
 	grunt.initConfig({
-		jshint: {
-			all: [
-				'Gruntfile.js',
-				'tasks/*.js',
-				'<%= nodeunit.tests %>',
-			],
-			options: {
-				jshintrc: '.jshintrc',
-				reporter: require( 'jshint-stylish' ),
-			},
-		},
-
-		// Before generating any new files, remove any previously-created files.
 		clean: {
-			tests: ['tmp'],
+			tests: ['test/temp'],
 		},
 
-		// Configuration to be run (and then tested).
 		css_purge: {
+
+			// Default options in src / dest notation
 			default_options: {
-				options: {
-				},
+				options: {},
+				src: 'test/css/test.css',
+				dest: 'test/temp/default_options.css',
+			},
+
+			// Default options with multiple files in src / dest notation
+			multiple_files: {
+				options: {},
+				src: [
+					'test/css/test.css',
+					'test/css/subfolder/test2.css',
+				],
+				dest: 'test/temp/multiple_files.css',
+			},
+
+			// Default options with multiple files in files notation
+			multiple_files2: {
+				options: {},
 				files: {
-					'tmp/purged.css': 'test/fixtures/test.css',
+					'test/temp/multiple_files2.css': ['test/css/test.css', 'test/css/subfolder/test2.css'],
 				},
 			},
+
+			// Default options with multiple files with wildcard in files notation
+			multiple_files3: {
+				options: {},
+				files: [{
+					src: ['test/css/**/*.css'],
+					dest: 'test/temp/multiple_files3.css',
+				}],
+			},
+
+			// Custom options
 			custom_options: {
 				options: {
-					"verbose": true,
-					"no_duplicate_property": false,
+					trim_comments: false,
+					generate_report: true,
 				},
-				files: {
-					'tmp/purged-custom.css': 'test/fixtures/test.css',
-				},
+				src: 'test/css/test.css',
+				dest: 'test/temp/default_options.css',
 			},
-		},
-
-		// Unit tests.
-		nodeunit: {
-			tests: ['test/*_test.js'],
 		},
 
 	});
 
-	// Actually load this plugin's task(s).
 	grunt.loadTasks('tasks');
 
-	// Whenever the "test" task is run, first clean the "tmp" dir, then run this
-	// plugin's task(s), then test the result.
-	grunt.registerTask('test', ['clean', 'css_purge', 'nodeunit']);
+	grunt.registerTask('test', ['clean', 'css_purge']);
 
-	// By default, lint and run all tests.
-	grunt.registerTask('default', ['jshint', 'test']);
+	grunt.registerTask('default', ['test']);
 
 };
