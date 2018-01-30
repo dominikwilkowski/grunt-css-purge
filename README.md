@@ -134,6 +134,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+* 1.0.2 - Fixed to major `css-purge` version
 * 1.0.1 - Reduced dependencies
 * 1.0.0 - Updated to CSS-Purge 3.0.0
 * 0.0.4 - Updated peerDependencies for grunt 1.0
