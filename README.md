@@ -113,6 +113,21 @@ multiple_files3: {
 },
 ```
 
+Purge a folder as is into multiple files:
+
+```js
+multiple_files4: {
+	options: {},
+	files: [{
+		expand: true,
+		cwd: "css/", // all *.css files inside the css/ folder will be purged
+		src: "*.css",
+		dest: "output/", //and placed into the output folder
+		ext: ".min.css",
+	}],
+},
+```
+
 Custom options:
 
 ```js
