@@ -55,19 +55,18 @@ module.exports = function( Grunt ) {
 				return;
 			}
 
+			// Create destionation folder if we have to
+			if( !Fs.existsSync( Path.dirname( destFile ) ) ) {
+				const newFolder = Path.dirname( destFile );
+
+				Grunt.file.mkdir( newFolder, null );
+				Grunt.log.writeln( Chalk.cyan('"' + newFolder + '/" has been created' ) );
+			}
+
 			let CSS = '';
 
 			// Iterate over all files
 			srcFiles.forEach( ( srcFile ) => {
-
-				// Create folder if we have to
-				if( !Fs.existsSync( Path.dirname( destFile ) ) ) {
-					const newFolder = Path.dirname( destFile );
-
-					Grunt.file.mkdir( newFolder, null );
-					Grunt.log.writeln( Chalk.cyan('"' + newFolder + '/" has been created' ) );
-				}
-
 				// Get all CSS together
 				CSS += Grunt.file.read( srcFile );
 			});
