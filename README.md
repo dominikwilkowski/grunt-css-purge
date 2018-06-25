@@ -128,6 +128,21 @@ multiple_files4: {
 },
 ```
 
+Purge a folder as is into multiple files while keeping sub-folder intact:
+
+```js
+multiple_files5: {
+	options: {},
+	files: [{
+		expand: true,
+		cwd: "css/",
+		src: "**/*.css", // all *.css files in the css/ and it's sub-folders will be purged
+		dest: "output/", //and placed into the output folder
+		ext: ".min.css",
+	}],
+},
+```
+
 Custom options:
 
 ```js
@@ -149,6 +164,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+* 1.1.0 - Mad task async
 * 1.0.2 - Fixed to major `css-purge` version
 * 1.0.1 - Reduced dependencies
 * 1.0.0 - Updated to CSS-Purge 3.0.0
