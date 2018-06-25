@@ -43,6 +43,8 @@ module.exports = function( Grunt ) {
 
 	Grunt.registerMultiTask('css_purge', 'Grunt plugin to run CSS-Purge', function() {
 
+		const done = this.async();
+
 		this.files.forEach( ( files ) => {
 			// Get source files and destination location
 			const srcFiles = GetAvailableFiles( files.src );
@@ -84,6 +86,8 @@ module.exports = function( Grunt ) {
 						Grunt.file.write( destFile, result );
 						Grunt.log.ok( `File${ srcFiles.length > 1 ? 's' : '' } successfully purged to "${ Chalk.green( destFile ) }"` );
 					}
+
+					done();
 				});
 
 			}
@@ -97,6 +101,8 @@ module.exports = function( Grunt ) {
 				errorMessage.origError = error;
 				Grunt.log.warn( `Purging CSS failed for "${ Chalk.cyan( destFile ) }".` );
 				Grunt.fail.warn( errorMessage );
+
+				done();
 			}
 		});
 	});
