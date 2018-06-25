@@ -64,6 +64,18 @@ module.exports = function( grunt ) {
 				}],
 			},
 
+			// Default options with multiple files converting to multiple files in wildcard folder
+			multiple_files5: {
+				options: {},
+				files: [{
+					expand: true,
+					cwd: "test/css/",
+					src: "**/*.css",
+					dest: "test/temp/",
+					ext: ".min.css",
+				}],
+			},
+
 			// Custom options
 			custom_options: {
 				options: {

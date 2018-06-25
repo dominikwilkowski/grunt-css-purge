@@ -1,6 +1,6 @@
 {
 	"name": "grunt-css-purge",
-	"version": "1.0.2",
+	"version": "1.1.0",
 	"description": "Grunt plugin to run CSS-Purge",
 	"homepage": "https://github.com/dominikwilkowski/grunt-css-purge",
 	"repository": {
